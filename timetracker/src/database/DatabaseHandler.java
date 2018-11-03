@@ -2,6 +2,7 @@ package database;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 
@@ -16,7 +17,6 @@ public class DatabaseHandler {
 	private PreparedStatement getPreparedStatement(String statement) throws SQLException {
 		Connection connection = DriverManager.getConnection(this.databaseURL);
 		return connection.prepareStatement(statement);
-		
 	}
 	 
 	public void addProject(String name, Integer isActive) throws SQLException {
@@ -41,5 +41,24 @@ public class DatabaseHandler {
 		statement.setInt(1, projectID);
 		statement.setInt(2, time);
 		statement.executeUpdate();
+	}
+	
+	public ResultSet getProjects() throws SQLException {
+		String sqlStatement = "SELECT * from projects";
+		PreparedStatement statement = this.getPreparedStatement(sqlStatement);
+		return statement.executeQuery();
+	}
+	
+	public ResultSet getTimeLogs() throws SQLException {
+		String sqlStatement = "SELECT * from timelogs";
+		PreparedStatement statement = this.getPreparedStatement(sqlStatement);
+		return statement.executeQuery();
+	}
+	
+	public ResultSet getTimeLogs(Integer projectID) throws SQLException {
+		String sqlStatement = "SELECT * from timelogs WHERE project_id=(?)";
+		PreparedStatement statement = this.getPreparedStatement(sqlStatement);
+		statement.setInt(1, projectID);
+		return statement.executeQuery();
 	}
 }
