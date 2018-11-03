@@ -2,14 +2,12 @@ package core;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.HashMap;
-import java.util.concurrent.TimeUnit;
 
 import database.DatabaseHandler;
 
 public class TimeHandler {
 	
-	private DatabaseHandler database;
+	private final DatabaseHandler database;
 	
 	public TimeHandler() {
 		this.database = new DatabaseHandler();
@@ -27,5 +25,4 @@ public class TimeHandler {
 	public void addTime(Integer projectID, Long time) throws SQLException {
 		this.database.addTime(projectID, time.intValue());
 	}
-	
 }
