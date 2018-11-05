@@ -1,5 +1,7 @@
 package core;
 
+import java.util.concurrent.TimeUnit;
+
 public class Timer {
 	
 	private long startTime;
@@ -19,16 +21,16 @@ public class Timer {
 	public Long stop() {
 		if (this.active) {
 			this.active = false;
-			return System.currentTimeMillis() - this.startTime;
+			return TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis() - this.startTime);
 		}
-		return 0L;
+		return TimeUnit.MILLISECONDS.toSeconds(0L);
 	}
 	
 	public Long getTime() {
 		if (this.active) {
-			return System.currentTimeMillis() - this.startTime;
+			return TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis() - this.startTime);
 		}
-		return 0L;
+		return TimeUnit.MILLISECONDS.toSeconds(0L);
 	}
 	
 	public Boolean isActive() {

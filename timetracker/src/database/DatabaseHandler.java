@@ -27,7 +27,6 @@ public class DatabaseHandler {
 		statement.executeUpdate();
 		}
 		
-	
 	public void updateProjectStatus(Integer id, Integer isActive) throws SQLException {
 		String sqlStatement = "UPDATE projects SET is_active=(?) WHERE project_id=(?)";
 		PreparedStatement statement = this.getPreparedStatement(sqlStatement);
