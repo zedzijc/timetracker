@@ -4,6 +4,8 @@ import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -52,11 +54,9 @@ public class MainView {
 		gbc.gridy = 0;
 		gbc.weightx = 0.25;
 		gbc.weighty = 0.4;
-		//Add listeners to when mainframe resizes
 		gbc.ipadx = this.mainFrame.getWidth()/12;
 		gbc.ipady = this.mainFrame.getHeight()/18;
 		gbc.anchor = GridBagConstraints.CENTER;
-		//gbc.insets = new Insets(20, 10, 0, 10);
 		this.mainPanel.add(startButton, gbc);
 		
 		JButton stopButton = new JButton("Stop");
@@ -67,7 +67,6 @@ public class MainView {
 		gbc.ipadx = this.mainFrame.getWidth()/12;
 		gbc.ipady = this.mainFrame.getHeight()/18;
 		gbc.anchor = GridBagConstraints.NORTH;
-		//gbc.insets = new Insets(20, 10, 20, 10);
 		this.mainPanel.add(stopButton, gbc);
 		
 		this.timeLabel = new JLabel("00:45:15");
@@ -99,4 +98,5 @@ public class MainView {
 	public void setTime(String time){
 		this.timeLabel.setText(time);
 	}
+
 }

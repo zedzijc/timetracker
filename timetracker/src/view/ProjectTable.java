@@ -22,5 +22,4 @@ public class ProjectTable extends JTable {
                 return Boolean.class;
         }
     }
-
 }
