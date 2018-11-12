@@ -24,7 +24,7 @@ public class ProjectHandler {
 				while (projects.next()) {
 					String name = projects.getString("name");
 					Integer isActive = projects.getInt("is_active");
-					Integer id = projects.getInt("rowid");
+					Integer id = projects.getInt("project_id");
 					Long time = timeHandler.getTime(id);
 					projectList.add(new Project(name, isActive, id, time, database));
 				}

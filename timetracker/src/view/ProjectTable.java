@@ -16,8 +16,8 @@ public class ProjectTable extends JTable {
                 return String.class;
             case 1:
                 return String.class;
-            case 2:
-            	return Boolean.class;
+            //case 2:
+            //	return Boolean.class;
             default:
                 return Boolean.class;
         }

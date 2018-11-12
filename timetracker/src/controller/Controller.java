@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import core.Project;
 import core.ProjectHandler;
+import core.Time;
 import core.TimeHandler;
 import database.DatabaseHandler;
 import view.MainView;
@@ -14,45 +15,40 @@ public class Controller {
 	private final ProjectHandler projectHandler;
 	private final TimeHandler timeHandler;
 	private final DatabaseHandler database;
-	private UpdateTimeRunnable timeRunnable;
-	private Thread timeThread;
 	private ArrayList <Project> projects;
 	
 	public Controller(){
 		database = new DatabaseHandler();
 		timeHandler = new TimeHandler(database);
 		projectHandler = new ProjectHandler(database, timeHandler);
-		projects = this.projectHandler.getProjects();
-		mainView = new MainView(this, projects);
-		timeRunnable = new UpdateTimeRunnable(mainView);
-		timeThread = new Thread(timeRunnable);
-
+		loadProjects();
+		mainView = new MainView(this, new TimeController(this), projects);
 	}
-	public void startTiming() {
-		if(!timeThread.isAlive()) {
-			timeRunnable = new UpdateTimeRunnable(mainView);
-			timeThread = new Thread(timeRunnable);
-			timeThread.start();
-		}
+
+	public void updateTimeInView(String time){
+		this.mainView.setTime(time);
 	}
 	
-	public void stopTiming(Integer projectID) {
-		if(timeThread.isAlive()) {
-			Long seconds = timeRunnable.stop();
-			for (Project project : projects) {
-				if (project.getID() == projectID) {
-					project.addTime(seconds);
-					try {
-						timeHandler.addTime(projectID, seconds);
-					} catch (SQLException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
+	private void loadProjects(){
+		projects = projectHandler.getProjects();
+	}
+	
+	public void addTime(Long time, int projectID){
+		for (Project project : projects) {
+			if (project.getID() == projectID) {
+				project.addTime(time);
+				try {
+					timeHandler.addTime(projectID, time);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
 			}
 		}
+		loadProjects();
+		updateTimeInView(Time.convert(0));
+		mainView.update(projects);
 	}
-	
 	public void newProject(String projectName) {
 		try {
 			projectHandler.newProject(projectName, true);
@@ -60,6 +56,7 @@ public class Controller {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		//And refresh the view to show also the new project. 
+		loadProjects();
+		mainView.update(projects);
 	}
 }

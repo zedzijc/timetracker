@@ -4,20 +4,20 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import controller.Controller;
+import controller.TimeController;
 
 public class StopButtonListener implements ActionListener {
 
-	private final Controller controller;
-	private final MainView mainView;
+	private final TimeController controller;
+
 	
-	public StopButtonListener(Controller controller, MainView mainView) {
+	public StopButtonListener(TimeController controller) {
 		this.controller = controller;
-		this.mainView = mainView;
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		this.controller.stopTiming(this.mainView.getSelectedProject());
+		this.controller.stopTiming();
 		
 	}
 

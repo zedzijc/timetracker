@@ -19,7 +19,7 @@ public class Timer {
 		}
 	}
 	
-	public Long stop() {
+	public long stop() {
 		if (active) {
 			active = false;
 			return TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis() - startTime);
@@ -27,14 +27,14 @@ public class Timer {
 		return TimeUnit.MILLISECONDS.toSeconds(0L);
 	}
 	
-	public Long getTime() {
+	public long getTime() {
 		if (active) {
 			return TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis() - startTime);
 		}
 		return TimeUnit.MILLISECONDS.toSeconds(0L);
 	}
 	
-	public Boolean isActive() {
+	public boolean isActive() {
 		return active;
 	}
 	

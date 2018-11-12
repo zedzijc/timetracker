@@ -13,7 +13,7 @@ public class TimeHandler {
 		this.database = database;
 	}
 	
-	public Long getTime(Integer projectID) throws SQLException {
+	public Long getTime(int projectID) throws SQLException {
 		ResultSet timeLogs = database.getTimeLogs(projectID);
 		Long seconds = 0L;
 		while (timeLogs.next()) {
@@ -22,7 +22,7 @@ public class TimeHandler {
 		return seconds;
 	}
 	
-	public void addTime(Integer projectID, Long time) throws SQLException {
+	public void addTime(int projectID, Long time) throws SQLException {
 		database.addTime(projectID, time.intValue());
 	}
 }

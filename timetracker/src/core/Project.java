@@ -8,11 +8,11 @@ public class Project {
 	
 	private final String name;
 	private final DatabaseHandler database;
-	private final Integer id;
-	private Long time;
-	private Integer isActive;
+	private final int id;
+	private long time;
+	private int isActive;
 
-	public Project(String name, Integer isActive, Integer id, Long time, DatabaseHandler database) {
+	public Project(String name, int isActive, int id, long time, DatabaseHandler database) {
 		this.name = name;
 		this.isActive = isActive;
 		this.id = id;
@@ -24,7 +24,11 @@ public class Project {
 		return time;
 	}
 	
-	public void addTime(Long seconds) {
+	public String getTimeString(){
+		return Time.convert(time);
+	}
+	
+	public void addTime(long seconds) {
 		time += seconds;
 	}
 	
@@ -35,7 +39,7 @@ public class Project {
 		else {
 			isActive = 1;
 		}
-		this.database.updateProjectStatus(id, isActive);
+		database.updateProjectStatus(id, isActive);
 	}
 	
 	public String getName() {

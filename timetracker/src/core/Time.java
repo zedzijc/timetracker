@@ -5,7 +5,7 @@ import java.util.concurrent.TimeUnit;
 
 public class Time {
 	
-	public static String convert(Long seconds) {
+	public static String convert(long seconds) {
 		Long hours = TimeUnit.SECONDS.toHours(seconds);
 		Long minutes = TimeUnit.SECONDS.toMinutes(seconds) 
 				- TimeUnit.HOURS.toMinutes(TimeUnit.SECONDS.toHours(seconds));

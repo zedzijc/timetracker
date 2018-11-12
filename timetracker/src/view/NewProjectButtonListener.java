@@ -17,11 +17,11 @@ import controller.Controller;
 		
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			System.out.println("affs");
 			String newProject = JOptionPane.showInputDialog("Name of new project:");
-			if (!newProject.isEmpty()) {
+			if (newProject != null && !newProject.isEmpty() ){
 				this.controller.newProject(newProject);
 			}
+
 		}
 
 	}
