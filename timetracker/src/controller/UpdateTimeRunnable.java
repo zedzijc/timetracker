@@ -4,7 +4,6 @@ import java.util.concurrent.TimeUnit;
 
 import core.Time;
 import core.Timer;
-import view.MainView;
 
 public class UpdateTimeRunnable implements Runnable {
 

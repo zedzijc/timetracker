@@ -29,7 +29,6 @@ public class MainWindowAdapter extends WindowAdapter{
 			}
 			frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		}
-		
+		System.exit(0);	
 	}
-	
 }

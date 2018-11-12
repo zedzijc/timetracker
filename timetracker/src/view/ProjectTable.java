@@ -10,7 +10,7 @@ public class ProjectTable extends JTable {
 		super(tm);
 	}
 	
-	public Class getColumnClass(int column) {
+	public Class<?> getColumnClass(int column) {
         switch (column) {
             case 0:
                 return String.class;
